@@ -1,24 +1,47 @@
-import logo from './logo.svg';
+import { useState } from 'react';
 import './App.css';
 
 function App() {
+
+  const [order, setOrder] = useState(true);
+  let [array, setArray] = useState([2, 202, 2, 3, 200, 4, 5]);
+  let [max, setMax] = useState(null)
+
+
+  let sort = () => {
+    let newSort = array.sort((a, b) => a - b);
+
+    { calculate(newSort) };
+
+  }
+
+  let calculate = (newSort) => {
+
+    setOrder(false);
+    setArray(newSort);
+    setMax(5);
+  }
+
   return (
+
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+
+      {order === true
+        ?
+        array.map((val, index) => (
+          <p key={index}>{val}</p>
+        ))
+        :
+        array.map((val, index) => (
+          <p key={index}>{val}</p>
+        ))
+
+      }
+
+      <button onClick={sort}>Sort and max profit</button>
+      <p>Maximum profit is: {max}</p>
+    </div >
+
   );
 }
 
